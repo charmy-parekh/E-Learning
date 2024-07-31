@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    <style>
+        .valid {
+            border-color: green;
+        }
+        .invalid {
+            border-color: red;
+        }
+
+
+        @media(max-width: 700px)
+        {
+            .no-mobile{
+                visiblity: hidden;
+                display: none;
+            }
+        }
+    </style>
+
+</head>
+<body>
+
+<!--<div class="col-4" style= "height: fit-content">-->
+<!--    <img src = "images/elearninglogo.png" alt="image" style= "display: flex; margin: auto" class="img-fluid" width = "100%"/>-->
+<!--</div>-->
+
+<section class="row" style="width: 100%">
+    <div class="col-sm-1 no-mobile"></div>
+    <div class="col-sm-4 no-mobile" style = "height: 100vh; display: flex; justify-content: center; align-items: center;"><img src="images/elearninglogo.png" alt="image" class="img-fluid"></div>
+    <div class="col-sm-7" style = "height: 100vh; display: flex; justify-content: center; align-items: center;">
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <p class="h5">Registration Form</p>
+                        </div>
+                        <div class="card-body">
+                            <form id="registrationForm" action="VerifyCodeSender" method="POST" autocomplete="on">
+                                <div class="form-group">
+                                    <label for="name">Full Name</label>
+                                    <input type="text" id="name" class="form-control" name="name" placeholder="Enter Full Name">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" class="form-control" name="email" placeholder="you@awesome.com" aria-describedby="emailHelp">
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <!--Password-->
+                                        <div class="form-group">
+                                            <label for="Password">Password</label>
+                                            <input type="password" class="form-control" id="Password" name="password" placeholder="Enter Password">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="confirmpassword">Confirm Password</label>
+                                            <input type="password" id="confirmpassword" class="form-control" name="confirmpassword" placeholder="Enter Confirm Password">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group text-center">
+                                    <button class="btn btn-primary" type="submit">SignUp</button>
+                                </div>
+
+                            </form>
+
+                            <div class="pt-3 text-center">
+                                <small class="">
+                                    Already have an account?
+                                    <a href="login.jsp">Login</a>
+                                </small><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="jquery.js"></script>
+<script src="jquery.validate.js"></script>
+
+<script>
+    //Calling inbuilt functions
+    $(document).ready(function() {
+        var currentErrors = {};
+
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "slideDown",
+            "hideMethod": "fadeOut"
+        };
+
+        $.validator.setDefaults({
+
+        });
+
+
+        //Validating using ID names
+        $("#registrationForm").validate({
+
+            rules:{
+
+                name: "required",
+
+                email: {
+                    required:true,
+                    email:true
+                },
+
+                Password:{
+                    required:true,
+                    minlength:8,
+                    maxlength:18
+                },
+
+                confirmpassword:{
+                    required:true,
+                    minlength:8,
+                    maxlength:18,
+                    equalTo:"#Password"
+                }
+            },
+
+            messages:{
+
+                name:"Please Enter Your Name",
+
+                email:{
+                    required:"Please Enter your Email ID",
+                    email:"Please Enter a valid Email ID"
+                },
+
+                Password:{
+                    required:"Please Enter Your Password",
+                    minlength:"Password Length Must Atleast be 8 Characters",
+                    maxlength:"Password must be within 8 to 18 Characters only"
+                },
+
+                confirmpassword:{
+                    required:"Please Enter Your Password",
+                    minlength:"Password Length Must Atleast be 8 Characters",
+                    maxlength:"Password must be within 8 to 18 Characters only",
+                    equalTo:"Password Mis-match"
+                }
+            },
+            errorPlacement: function(error, element) {
+                var name = element.attr("name");
+                if (!currentErrors[name]) {
+                    currentErrors[name] = true;
+                    toastr.error(error.text(), "", {
+                        onHidden: function() {
+                            delete currentErrors[name];
+                        }
+                    });
+                }
+            },
+            highlight: function(element) {
+                $(element).addClass('invalid').removeClass('valid');
+            },
+            unhighlight: function(element) {
+                $(element).addClass('valid').removeClass('invalid');
+            }
+        });
+    })
+
+</script>
+</body>
+</html>
