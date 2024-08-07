@@ -25,7 +25,7 @@ public class MyLearnings extends DataBaseDetails {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection(url, dbname, dbpass);
 			
-			String query = "select courses.Cno,img,courses.Cname, detail,jspfile from sturegistercourse, courses where Sno = ?";
+			String query = "select c.Cno,c.img,c.Cname, c.detail,c.jspfile from sturegistercourse sc,courses c where c.Cno=sc.Cno AND sc.Sno = ?";
 			
 			PreparedStatement st = con.prepareStatement(query);
 			st.setInt(1, Sno);

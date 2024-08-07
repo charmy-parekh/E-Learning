@@ -37,7 +37,7 @@ public class EnrollCourse extends HttpServlet {
 			try
 			{
 				rd.include(req, res);
-				out.println("<center><span style='color: red; background: #2A2A2A; position: absolute; padding: 5em; top:50%; left:38%'>Already Enrolled! Please check MyLearnings</span></center>");
+				out.println("<center><span style='color: white; background:#51be78 ; position: absolute; padding: 5em; top:50%; left:38%'>Already Enrolled! Please check MyLearnings</span></center>");
 			} 
 			catch (ServletException | IOException e)
 			{
@@ -48,7 +48,7 @@ public class EnrollCourse extends HttpServlet {
 		//If not enrolled already enrolling now
 		else if(register.StudentCourseRegister(StuID, CourseID, CourseName))
 		{
-			res.sendRedirect("JavaCourseVideo.jsp");
+			res.sendRedirect("home.jsp");
 		}
 		
 		//If any Error Occurs

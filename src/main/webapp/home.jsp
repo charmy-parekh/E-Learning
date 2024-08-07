@@ -21,50 +21,7 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 	<link rel="stylesheet" href="ePortal.css">
-
-    <style>
-        .mt20 {
-            margin-top: 20px;
-        }
-        .slideshow-container {
-            position: relative;
-            max-width: 100%;
-            width: 800px; /* Fixed width for the slideshow */
-            height: 450px; /* Fixed height for the slideshow */
-            margin: 0 auto; /* Center the container */
-            overflow: hidden;
-            border-radius: 10px;
-            margin-bottom: 20px; /* Space between slideshow and content below */
-        }
-
-        .slide {
-            display: none;
-        }
-
-        .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Ensure the image covers the container */
-            border-radius: 10px;
-        }
-
-        .active {
-            display: block;
-        }
-
-        .bs-color{
-            background-color: purple;
-            color: white;
-        }
-        
-         .user-icon{
-            color: lightgrey;
-        }
-        
-        .hide{
-        	display: none;
-        }
-    </style>
+    <link rel="stylesheet" href="home.css">
 </head>
 <body>
 
@@ -169,29 +126,76 @@
         </nav>
     </header>
 
-    <!--Content-->
-    <!--jumbotron BOOTSTRAP and font or text classes-->
-    <div class="container">
-        <%--<div class="jumbotron text-center">
-            <!--  P class="display-4">Welcome</P -->
-            <br classs="mt-5">
-            <p class="lead h4">BIT Learning Portal</p>
-            <P class="display-4">Happy Learning</P>
-        </div>--%>
-
-        <div class="slideshow-container">
-            <div class="slide active">
-                <img src="${pageContext.request.contextPath}/images/java.png" alt="Image 1" width = "20%"/>
-            </div>
-            <div class="slide">
-                <img src="${pageContext.request.contextPath}/images/python.png" alt="Image 2" width = "20%"/>
-            </div>
-            <div class="slide">
-                <img src="${pageContext.request.contextPath}/images/html.png" alt="Image 3" width = "20%"/>
-            </div>
-            <!-- Add more slides as needed -->
-        </div>
+    <!-- Greeting Div -->
+    <div class="greeting">
+        <h1>Hello <%= Name %>,</h1>
+        <p>What would you like to learn today?</p>
     </div>
+
+
+    
+    <div class="container mt-5">
+        <p class="h4">In Progress : </p>
+
+        <%
+            MyLearnings checkCourse = new MyLearnings();
+
+            LinkedList<String> cname = new LinkedList<>();
+            LinkedList<String> desc = new LinkedList<>();
+            LinkedList<String> img = new LinkedList<>();
+            LinkedList<String> jspfile = new LinkedList<>();
+
+            String[] cnm = null;
+            String[] dsc = null;
+            String[] imgurl = null;
+            String[] jsp = null;
+
+            CourseCarrierPojo carry = new CourseCarrierPojo();
+
+            if (checkCourse.displayCourse(RollNo, carry)) {
+                cname = carry.getCname();
+                desc = carry.getDesc();
+                img = carry.getImg();
+                jspfile = carry.getJspfile();
+
+                cnm = cname.toArray(new String[0]);
+                dsc = desc.toArray(new String[0]);
+                imgurl = img.toArray(new String[0]);
+                jsp = jspfile.toArray(new String[0]);
+
+                int p = cnm.length;
+        %>
+        <div class="container mt-4">
+            <div class="row" id="card-container">
+                <% for (int i = 0; i < p; i++) { %>
+                <div class="col-md-4 mb-4">
+                    <div class="card" style="width: 100%;">
+                        <img src="${pageContext.request.contextPath}<%= imgurl[i] %>" alt="<%= cnm[i] %>" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= cnm[i] %></h5>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="badge bg-primary">Rating</span>
+                                <span class="badge bg-warning text-dark">4.8/5</span> <!-- Assuming a static rating, update if dynamic -->
+                            </div>
+                            <p class="card-text mt-2"><%= dsc[i] %></p>
+                            <a href="<%= jsp[i] %>" class="btn btn-primary btn-block">Resume</a>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Get certified on Completion of Course</small>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+            </div>
+        </div>
+        <%
+            }else{
+        %>
+        <p>There are no Courses to see, Enroll a Course Now</p>
+        <%
+            }
+        %>
+	</div>
 
     <!--Gamification Cards or Blog UI-->
     <div class="container mt20">
@@ -203,10 +207,10 @@
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">Gamification <span class="badge bs-color badge-pill">Play</span></h5>
-            
+
                         <p class="card-text">This is a simple HTML Quiz conducted to give a basic idea on HTML tag's.</p>
-                    	<p class="card-text">What do you get on attending this ?</p>
-                    	<p class="card-text">Your Score doesn't matter. If you are new to HTML you can get a little knowledge about it and develop it based upon your interest. If you are familiar with HTML you can test your Skill's.</p>
+                        <p class="card-text">What do you get on attending this ?</p>
+                        <p class="card-text">Your Score doesn't matter. If you are new to HTML you can get a little knowledge about it and develop it based upon your interest. If you are familiar with HTML you can test your Skill's.</p>
                         <div class="clearfix"></div>
                         <%!
                             int Score;
@@ -236,94 +240,12 @@
                         <%
                             }
                         %>
-                    	
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
-    <div class="container mt-5">
-        <p class="h4">Continue your Learnings:</p>
-
-<%
-MyLearnings checkCourse = new MyLearnings();
-
-LinkedList <String> cname = new LinkedList <String> ();
-LinkedList <String> desc = new LinkedList <String> ();
-LinkedList <String> img = new LinkedList <String> ();
-LinkedList <String> jspfile = new LinkedList <String> ();
-
-String cnm [] = null;
-String dsc [] = null;
-String imgurl [] = null;
-String jsp [] = null;
-
-CourseCarrierPojo carry = new CourseCarrierPojo();
-
-if(checkCourse.displayCourse(RollNo, carry))
-{
-	cname = carry.getCname();
-	desc = carry.getDesc();
-	img = carry.getImg();
-	jspfile = carry.getJspfile();
-	
-	cnm = cname.toArray(new String[0]);
-	dsc = desc.toArray(new String[0]);
-	imgurl = img.toArray(new String[0]);
-	jsp = jspfile.toArray(new String[0]);
-	
-	int p = cnm.length;
-	System.out.println(p);
-	for(int i = 0; i < p; i++)
-	{
-%>	
-	<div class="card mt-3 mb-2" style="width: 80%; margin: 0 auto; position: relative;">
-	  <div class="row g-0">
-	    <div class="col-md-4">
-	      <img src="${pageContext.request.contextPath}<%=imgurl[i]%>" class="img-fluid rounded-start" alt="courseImage">
-	    </div>
-	    <div class="col-md-8">
-	      <div class="card-body">
-	        <h5 class="card-title"><%= cnm[i]%></h5>
-	        <p class="card-text"><%= dsc[i]%></p>
-	        
-	        <a href = <%=jsp[i]%> class="btn btn-primary" style = "position: absolute; bottom: 1em; right: 1em;">RESUME</a> 
-	        
-	      </div>
-	    </div>
-	  </div>
-	</div>
-    <!--Your Learnings Start
-    
-        <div class="card mt-4" style="width: 18rem;">
-            <img src="https://techbooky.com/wp-content/uploads/2019/10/java-logo.png" alt="Java" classs="card-img-top">
-
-            <div class="card-body">
-                <h5 class="card-title">Learn JAVA</h5>
-               <span class="badge badge-primary">Rating</span>
-                <span class="badge badge-warning">4.8/5</span>
-                <p class="card-text mt-2">Learn Java From Basics to Advanced and work on Projects with mentors Support.</p>
-                <a href="JavaCourseVideo.jsp" type="button" class="btn btn-primary btn-block">Resume</a>
-            </div>
-
-            <div class="card-footer">
-               <small class="text-muted">Get certified on Completion of Course</small>
-            </div>
-        </div-->
-    
-<%
-	}
-}
-
-else
-{
-%>
-	<p>There are no Courses to see, Enroll a Course Now</p>
-
-<%}%>
-
-	</div>
 
  <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -333,7 +255,7 @@ else
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 	<script src = "ContactUpdate.js"></script>
-    <script>
+    <%--<script>
         $(document).ready(function() {
             var slideIndex = 0;
             var slides = $(".slide");
@@ -347,10 +269,8 @@ else
                 slides.eq(slideIndex).addClass("active");
                 setTimeout(showSlides, 4000); // Change image every 4 seconds
             }
-
             showSlides();
         });
-    </script>
-	
+    </script>--%>
 </body>
 </html>

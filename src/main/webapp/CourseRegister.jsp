@@ -9,14 +9,11 @@
 <head>
 <meta charset="ISO-8859-1">
  <title>Register-Course</title>
-     <!--BootStrap 4 CDN-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    
-    <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-
+    
 		<style>
 		 .hide{
         	display: none;
@@ -114,10 +111,6 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Contact</a>
-                    </li>
-
-                    <li class="nav-item">
                         <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fas fa-user-circle fa-2x"></i></button>
 
                         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
@@ -126,7 +119,7 @@
                                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                             </div>
                             <div class="offcanvas-body text-center d-flex align-items-center justify-content-center flex-column">
-                               
+
                                 <p class="h4">User Details</p>
                                 <div>
                                      <p>
@@ -138,12 +131,12 @@
                                     <p>Email: <%= Email%></p>
                                     <p>Contact: <%= PNumber%> <i class="fas fa-edit" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit" onclick="UpdateContact()"></i></p>
                                 	<form id="updateForm" action = "UpdateContact" method="post" class="hide">
-                                		<input type="text" name="Contact" placeholder="10 - Digit Contact Number" pattern="[0-9]{10}" required>
+                                		<input type="text" name="Contact" placeholder="Update Contact Number" pattern="[0-9]{10}" required>
                                 		<input type ="text" name="Uemail" value = <%= Email%> hidden>
                                 		<button type = "submit" class="btn btn-primary btn-sm">Update</button>
                                 	</form>
                                 </div>
-                               
+
                             </div>
                         </div>
                     </li>
@@ -174,12 +167,10 @@
             <div class="col-md-6">
               <div class="h-100 p-5 text-white bg-dark rounded-3">
                 <h2>Your Details</h2>
+                <p>ID : <%= RollNo%></p>
                 <p>Name: <%= Name%></p>
-                <p>RollNo: <%= RollNo%></p>
                 <p>Email: <%= Email%></p>
-                
                 <p>(The above Details will be Enrolled in the Course)</p>
-                <!-- <button class="btn btn-outline-light" type="button">Example button</button> -->
               </div>
             </div>
             <div class="col-md-6">
@@ -192,7 +183,7 @@
               	</div>
               	
               	<div class="col-sm-7">
-              		<p>Course UID: <%= CourseUID%></p>
+              		<p>Course ID: <%= CourseUID%></p>
               	</div>
               </div>
               
@@ -210,23 +201,15 @@
               	<div class="col-sm-5">
               		 <p>Price: Free</p>
               	</div>
-              	
-              	<div class="col-sm-7">
-              		
-              	</div>
+              	<div class="col-sm-7"></div>
               </div>
                 
               <div class="row">
-              	<div class="col-sm-5">
-              		
-              	</div>
-              	
+              	<div class="col-sm-5"></div>
               	<div class="col-sm-7">
-              	
-              	<form action="EnrollCourse" method="post">
-              		<button class="btn btn-outline-secondary btn-block" type="submit">Enroll Now</button>
-              	</form>
-              		
+                    <form action="EnrollCourse" method="post">
+                        <button class="btn btn-outline-secondary btn-block" type="submit">Enroll Now</button>
+                    </form>
               	</div>
               </div>
             
@@ -235,7 +218,7 @@
           </div>
       
           <footer class="pt-3 mt-4 text-muted border-top">
-            &copy; 2021
+            &copy; 2024
           </footer>
         </div>
       </main>

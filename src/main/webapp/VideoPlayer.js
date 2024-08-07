@@ -193,7 +193,7 @@ function SendRequest()
 			if(flag == "true")
 			{
 				window.location.reload();
-				//document.getElementById("Locked-boxes").location.reload();
+				document.getElementById("Locked-boxes").location.reload();
 			}
 		}
 	}

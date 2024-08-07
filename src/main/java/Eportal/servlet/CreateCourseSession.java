@@ -16,7 +16,7 @@ public class CreateCourseSession extends HttpServlet
 		HttpSession st = req.getSession();
     	st.setAttribute("Cname", cname);
     	
-    	System.out.println("Here we are in the TRACKKKKK -- Created a session for you");
+    	//System.out.println("Here we are in the TRACKKKKK -- Created a session for you");
     	res.sendRedirect("CourseRegister.jsp");
 	}
 }

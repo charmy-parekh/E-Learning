@@ -29,12 +29,10 @@ public class PasswordHelper extends HttpServlet {
 		
 		PasswordFetcherHELPER obj = new PasswordFetcherHELPER();
 		boolean flg = obj.getPassword(pass);
-		//System.out.println("Password: "+flg);
+		System.out.println("Password: "+flg);
 		if(flg)
 		{
 			String password = pass.getPassword();
-			
-			//System.out.println(password);
 			PasswordEMAILSENDER send = new PasswordEMAILSENDER();
 			boolean flag = send.SendPassword(Email, password);
 			System.out.println("Mail sent: "+flag);
@@ -42,7 +40,7 @@ public class PasswordHelper extends HttpServlet {
 			{
 				RequestDispatcher rd = req.getRequestDispatcher("PasswordHELP.html");
 				rd.include(req, res);
-				out.print("<span style='color: green'><center>Check Your Email for More Detail's</center></span>");
+				out.print("<span style='color: green'><center>Check Your Email for More Details</center></span>");
 			}
 		}
 		

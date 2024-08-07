@@ -36,7 +36,6 @@ public class PasswordFetcherHELPER extends DataBaseDetails{
 				//System.out.println(pass);
 				flag = true;
 			}
-			
 			st.close();
 			con.close();
 		}
@@ -44,10 +43,6 @@ public class PasswordFetcherHELPER extends DataBaseDetails{
 		{
 			e.printStackTrace();
 		}
-		
 		return(flag);
 	}
-	
-
-	
 }

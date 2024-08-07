@@ -49,7 +49,7 @@
 
     //We Must Enter
     String CourseName = "HTML";
-    int cid = 1;
+    int cid = 2;
 %>
 
 <%
@@ -178,7 +178,9 @@
 
             %>
             <div class="box-lock"><i class="fas fa-lock"></i></div>
-
+            <script>
+                window.location.reload();
+            </script>
             <%
                 }
             %>
@@ -198,53 +200,8 @@
             %>
         </div>
 
-        <!-- div class="box">
-            <p>Lesson 4</p>
-            <div class="box-lock"><i class="fas fa-lock"></i></div>
-        </div -->
-
-        <div class="box pb-2">
-            <!-- Here Assessment -->
-            <!-- <section class="quiz-sec" id="quiz-section"></section> -->
-            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="StartTimer(20, 'quiz-section', quiz), StartAssessment(quiz, 20, 'quiz-section')">Assessment</button>
-
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Assessment</h5>
-                            <p class="modal-title h4 ms-auto"><span id="timer">20</span> sec</p>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-
-                        <%
-                            if(!check.CompletedAssessment(RollNo, cid))
-                            {
-                        %>
-
-                        <form name="quiz-section" class="modal-body quiz-sec" id="quiz-section">
-                            <!-- Form Object JSON-->
-
-
-                        </form>
-                        <p id="mark-display" class="mark-section"></p>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button class="btn-danger my-btn" id="testBtn" onclick="EvaluateMark('quiz-section', quiz)">Submit</button>
-                        </div>
-                        <% }
-                        else
-                        {
-                        %>
-                        <p class="mark-section">You have Cleared the Assessment</p>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        </div>
-                        <%}%>
-                    </div>
-                </div>
-            </div>
-
+        <div class="box mt-2 pb-2">
+            <a href="generateCertificate" class="btn btn-outline-success">Certificate</a>
             <%
                 //If user saw before video unlocks next
                 if(check.AlreadySaw(RollNo, "HtmlV3") == false)
@@ -256,16 +213,6 @@
                 }
             %>
         </div>
-
-        <div class="box mt-2 pb-2">
-            <a href="certificatePDF.jsp" class="btn btn-outline-success">Certificate</a>
-            <%if(!check.CompletedAssessment(RollNo, cid))
-            {
-            %>
-            <div class="box-lock"><i class="fas fa-lock"></i></div>
-            <%} %>
-        </div>
-
     </div>
 
     <!--Video Player ----------------------------------------------------------------------->

@@ -61,6 +61,7 @@ public class UserVideoSee extends HttpServlet {
 			if(flag2)
 			{
 				res.setContentType("text/html");
+				res.getWriter().write("true");
 			}
 		}
 	}
