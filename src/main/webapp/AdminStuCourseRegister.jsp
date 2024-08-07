@@ -32,7 +32,7 @@
   	
     if(session.getAttribute("AEmail") == null)
     {
-    	response.sendRedirect("AdminLogin.html");
+    	response.sendRedirect("AdminLogin.jsp");
     }
     %>
     <header class="navbar navbar-light sticky-top bg-light flex-md-nowrap p-3 shadow">

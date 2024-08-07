@@ -32,7 +32,7 @@
   	
     if(session.getAttribute("AEmail") == null)
     {
-    	response.sendRedirect("AdminLogin.html");
+    	response.sendRedirect("AdminLogin.jsp");
     }
     %>
     
